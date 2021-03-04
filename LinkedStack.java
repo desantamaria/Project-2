@@ -1,4 +1,7 @@
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.EmptyStackException;
+import org.junit.Test;
+
 /**
     A class of stacks whose entries are stored in a chain of nodes. */
 public final class LinkedStack<T> implements StackInterface<T>
@@ -44,6 +47,87 @@ public final class LinkedStack<T> implements StackInterface<T>
         topNode = null;
     } // end clear
 
+    private char checkIfAlpha(char input) //checks if character is a member of the alphabet
+    {
+        if(Character.isLetter(input)) {
+            return '~'; //signifier for a letter of the alphabet
+        } else {
+            return input;
+        }
+    }
+
+    private int checkPrecedence(int number)
+    {
+        switch(number)
+        {
+            case '+': case '-':
+                return 0;
+            case '*': case '/':
+                return 1;
+            default: break;
+        }
+        return 3;
+    }
+
+    /**
+     * 
+     * @param infix
+     * @return string that shows the postfix form of infix equation inputted.
+     */
+    public String convertToPostfix(String infix)
+    {
+        StackInterface<Character> operatorStack = new LinkedStack<>();
+        StringBuilder postfix = new StringBuilder();
+        int index = 0;
+
+        while(infix.length() > 0)
+        {
+            char currentChar = checkIfAlpha(infix.charAt(index));
+            switch(currentChar)
+            {
+                case '~':
+                    postfix.append(infix.charAt(index));
+                    break;
+                case '^':
+                    operatorStack.push(currentChar);
+                    break;
+                case '+': case '-': case '*': case '/':
+                    while(!operatorStack.isEmpty() && checkPrecedence(infix.charAt(index)) <= checkPrecedence(operatorStack.peek()))
+                    {
+                        postfix.append(operatorStack.pop());
+                    }
+                    operatorStack.push(currentChar);
+                    System.out.println(operatorStack.peek());
+                    break;
+                case '(':
+                    operatorStack.push(currentChar);
+                    break;
+                case ')':
+                    System.out.println(operatorStack.peek());
+                    char topOperator = operatorStack.pop();
+                    while(topOperator != '(')
+                    {
+                        postfix.append(topOperator);
+                        topOperator = operatorStack.pop();
+                    }
+                    break;
+                default: break;
+            }
+            index++;
+        }
+        while(!operatorStack.isEmpty())
+        {
+            postfix.append(operatorStack.pop());
+        }
+        return postfix.toString();
+    }
+
+    @Test
+    public void testConvertToPostfix()
+    {
+        LinkedStack<Character> newString = new LinkedStack<>();
+        assertEquals("ab*ca-/de*+", newString.convertToPostfix("a*b/(c-a)+d*e"));
+    }
 
 	private class Node
 	{
