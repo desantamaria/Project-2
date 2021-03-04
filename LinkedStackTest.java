@@ -8,14 +8,14 @@ public class LinkedStackTest {
         //System.out.println(expression.convertToPostfix("a*b/(c-a)+d*e")); 
     }
     
-    public static String infixToPostfix() {
+    public static String infixToPostfix(String Infix) {
         LinkedStack<Character> expression = new LinkedStack<>();
-        String Postfix = expression.convertToPostfix("a*b/(c-a)+d*e");
+        String Postfix = expression.convertToPostfix(Infix);
         return Postfix;
     }
     
     @Test
     public void TestinfixToPostfix() {
-        assertEquals("ab*ca-/de*+", infixToPostfix());        
+        assertEquals("ab*ca-/de*+", infixToPostfix("a*b/(c-a)+d*e"));        
     }
 }
