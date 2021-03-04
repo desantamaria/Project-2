@@ -8,7 +8,7 @@ public class ArrayStackTest {
     }
 
     public static int higher(int x, int y){
-        if (x > y)   
+        if (x < y)   
             return x;
         else 
             return y;

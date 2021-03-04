@@ -7,7 +7,7 @@ import org.junit.Test;
 public final class LinkedStack<T> implements StackInterface<T>
 {
 	private Node topNode; // References the first node in the chain
-  
+
     public LinkedStack()
     {
         topNode = null;
@@ -56,17 +56,17 @@ public final class LinkedStack<T> implements StackInterface<T>
         }
     }
 
-    private int checkPrecedence(int number)
+    private int checkPrecedence(char symbol)
     {
-        switch(number)
+        switch(symbol)
         {
             case '+': case '-':
-                return 0;
-            case '*': case '/':
                 return 1;
+            case '*': case '/':
+                return 2;
             default: break;
         }
-        return 3;
+        return 0;
     }
 
     /**
@@ -80,7 +80,7 @@ public final class LinkedStack<T> implements StackInterface<T>
         StringBuilder postfix = new StringBuilder();
         int index = 0;
 
-        while(infix.length() > 0)
+        while(index < infix.length())
         {
             char currentChar = checkIfAlpha(infix.charAt(index));
             switch(currentChar)
@@ -92,18 +92,16 @@ public final class LinkedStack<T> implements StackInterface<T>
                     operatorStack.push(currentChar);
                     break;
                 case '+': case '-': case '*': case '/':
-                    while(!operatorStack.isEmpty() && checkPrecedence(infix.charAt(index)) <= checkPrecedence(operatorStack.peek()))
+                    while(!operatorStack.isEmpty() && checkPrecedence(currentChar) <= checkPrecedence(operatorStack.peek()))
                     {
                         postfix.append(operatorStack.pop());
                     }
                     operatorStack.push(currentChar);
-                    System.out.println(operatorStack.peek());
                     break;
                 case '(':
                     operatorStack.push(currentChar);
                     break;
                 case ')':
-                    System.out.println(operatorStack.peek());
                     char topOperator = operatorStack.pop();
                     while(topOperator != '(')
                     {
