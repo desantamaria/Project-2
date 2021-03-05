@@ -4,7 +4,6 @@ import org.junit.Test;
 
 public class LinkedStackTest {
     public static void main(String[] args) {
-<<<<<<< HEAD
         System.out.println("Hello");
 
     }
@@ -16,23 +15,103 @@ public class LinkedStackTest {
 
         assertEquals("ab*ca-/de*+", expression.convertToPostfix("a*b/(c-a)+d*e"));
         System.out.println("Function converts equation to postfix");
+        System.out.println();
+
+        System.out.println("Input: a*b/(c-a)+d*e");
         System.out.println("Expected Result: ab*ca-/de*+");
         System.out.print("Actual Result: ");
         System.out.println(expression.convertToPostfix("a*b/(c-a)+d*e")); 
-=======
-        //LinkedStack<Character> expression = new LinkedStack<>();
-        //System.out.println(expression.convertToPostfix("a*b/(c-a)+d*e")); 
+        System.out.println();
+
+        assertEquals("ab*ca-/de*+", expression.convertToPostfix("a * b / (c - a) + d * e"));
+        System.out.println("Input: a * b / (c - a) + d * e");
+        System.out.println("Expected Result: ab*ca-/de*+");
+        System.out.print("Actual Result: ");
+        System.out.println(expression.convertToPostfix("a * b / (c - a) + d * e")); 
+        System.out.println();
+
+        assertEquals("ab*ca-/de*+", expression.convertToPostfix("a*b / (c - a)                     + d*e"));
+        System.out.println("Input: a*b / (c - a)                     + d*e");
+        System.out.println("Expected Result: ab*ca-/de*+");
+        System.out.print("Actual Result: ");
+        System.out.println(expression.convertToPostfix("a*b / (c - a)                     + d*e")); 
+        System.out.println();
+
+        assertEquals("ab*c*ad/-", expression.convertToPostfix("a*b*c - (a / d)"));
+        System.out.println("Input: a*b*c - (a / d)");
+        System.out.println("Expected Result: ab*c*ad/-");
+        System.out.print("Actual Result: ");
+        System.out.println(expression.convertToPostfix("a*b*c - (a / d)")); 
     }
-    
-    public static String infixToPostfix() {
-        LinkedStack<Character> expression = new LinkedStack<>();
-        String Postfix = expression.convertToPostfix("a*b/(c-a)+d*e");
-        return Postfix;
-    }
-    
+
     @Test
-    public void TestinfixToPostfix() {
-        assertEquals("ab*ca-/de*+", infixToPostfix());        
->>>>>>> 91f526175322dab962259a3fb4c46144472fbae9
+    public void testCheckIfAlpha()
+    {
+        LinkedStack<Character> expression = new LinkedStack<>();
+        System.out.println("Function converts equation to postfix");
+
+        assertEquals('~', expression.checkIfAlpha('b'));
+        System.out.println("Test 1:");
+        System.out.println("Expected Result: ~");
+        System.out.print("Actual Result: ");
+        System.out.println(expression.checkIfAlpha('b'));
+        System.out.println();
+
+        assertEquals('~', expression.checkIfAlpha('z'));
+        System.out.println("Test 2:");
+        System.out.println("Expected Result: ~");
+        System.out.print("Actual Result: ");
+        System.out.println(expression.checkIfAlpha('z'));
+        System.out.println();
+
+        assertEquals('/', expression.checkIfAlpha('/'));
+        System.out.println("Test 3:");
+        System.out.println("Expected Result: /");
+        System.out.print("Actual Result: ");
+        System.out.println(expression.checkIfAlpha('/'));
+        System.out.println();
+
+        assertEquals('*', expression.checkIfAlpha('*'));
+        System.out.println("Test 4:");
+        System.out.println("Expected Result: *");
+        System.out.print("Actual Result: ");
+        System.out.println(expression.checkIfAlpha('*'));
+        System.out.println();
+    }
+
+    @Test
+    public void testCheckPrecedence()
+    {
+        LinkedStack<Character> expression = new LinkedStack<>();
+        System.out.println("Function assigns an integer value to an operator");
+
+        assertEquals(1, expression.checkPrecedence('-'));
+        System.out.println("Test 1:");
+        System.out.println("Expected Result: 1");
+        System.out.print("Actual Result: ");
+        System.out.println(expression.checkPrecedence('-'));
+        System.out.println();
+
+        assertEquals(1, expression.checkPrecedence('+'));
+        System.out.println("Test 2:");
+        System.out.println("Expected Result: 1");
+        System.out.print("Actual Result: ");
+        System.out.println(expression.checkPrecedence('+'));
+        System.out.println();
+
+        assertEquals(2, expression.checkPrecedence('/'));
+        System.out.println("Test 3:");
+        System.out.println("Expected Result: 2");
+        System.out.print("Actual Result: ");
+        System.out.println(expression.checkPrecedence('/'));
+        System.out.println();
+
+        assertEquals(2, expression.checkPrecedence('*'));
+        System.out.println("Test 4:");
+        System.out.println("Expected Result: 2");
+        System.out.print("Actual Result: ");
+        System.out.println(expression.checkPrecedence('*'));
+        System.out.println();
+
     }
 }

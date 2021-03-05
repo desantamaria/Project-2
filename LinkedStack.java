@@ -1,6 +1,4 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.EmptyStackException;
-import org.junit.Test;
 
 /**
     A class of stacks whose entries are stored in a chain of nodes. */
@@ -47,7 +45,12 @@ public final class LinkedStack<T> implements StackInterface<T>
         topNode = null;
     } // end clear
 
-    private char checkIfAlpha(char input) //checks if character is a member of the alphabet
+    /**
+     * Checks if the char input into the function is part of the alphabet, if it is then the function will output ~ to represent a member of the alphabet, if not then it returns the char.
+     * @param input represents an individual character in a string of equations
+     * @return a char that represents if it is alphabetical which is represented by the ~ sign, or returns the char if the input is not part of the alphabet.
+     */
+    public char checkIfAlpha(char input) //checks if character is a member of the alphabet
     {
         if(Character.isLetter(input)) {
             return '~'; //signifier for a letter of the alphabet
@@ -56,7 +59,12 @@ public final class LinkedStack<T> implements StackInterface<T>
         }
     }
 
-    private int checkPrecedence(char symbol)
+    /**
+     * Checks the precedence of an operator and assigns it an int value
+     * @param symbol operator from which the precedence will be obtained
+     * @return int that represents the precedence of the symbol
+     */
+    public int checkPrecedence(char symbol)
     {
         switch(symbol)
         {
@@ -70,8 +78,8 @@ public final class LinkedStack<T> implements StackInterface<T>
     }
 
     /**
-     * 
-     * @param infix
+     * Function that converts infix equation in the form of the string to a postfix equation.
+     * @param infix equation you input, in infix form
      * @return string that shows the postfix form of infix equation inputted.
      */
     public String convertToPostfix(String infix)
@@ -118,13 +126,6 @@ public final class LinkedStack<T> implements StackInterface<T>
             postfix.append(operatorStack.pop());
         }
         return postfix.toString();
-    }
-
-    @Test
-    public void testConvertToPostfix()
-    {
-        LinkedStack<Character> newString = new LinkedStack<>();
-        assertEquals("ab*ca-/de*+", newString.convertToPostfix("a*b/(c-a)+d*e"));
     }
 
 	private class Node

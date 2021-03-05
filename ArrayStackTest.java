@@ -4,11 +4,11 @@ import org.junit.Test;
 
 public class ArrayStackTest {
     public static void main(String[] args) {
-
+        System.out.println("Hello");
     }
 
     public static int higher(int x, int y){
-        if (x < y)   
+        if (x > y)   
             return x;
         else 
             return y;
