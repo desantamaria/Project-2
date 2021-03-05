@@ -90,6 +90,42 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
 
     } // end clear
 
+    public char evaluatePostfix(String postfix) {
+        StackInterface<Character> valueStack = new ResizeableArrayStack<>();
+        int index = 0;
+
+        while(index < postfix.length()) {
+            char nextCharacter = checkIfDigit(postfix.charAt(index));
+
+            switch(nextCharacter)
+            {
+                case '~':
+                    valueStack.push(postfix.charAt(index));
+                    break;
+                case '+' : case '-' : case '*' : case '/' : case '^' :
+                    int operandTwo = valueStack.pop();
+                    int operandOne = valueStack.pop();
+                    
+                    int intResult = operandTwo + postfix.charAt(index) + operandOne;
+                    char charResult = (char)intResult;
+
+                    valueStack.push(charResult);
+                    break;
+                default: break;
+            }
+        }
+        return valueStack.peek();
+    }
+
+    private char checkIfDigit(char input) //checks if character is a member of the alphabet
+    {
+        if(Character.isDigit(input)) {
+            return '~'; //signifier for a letter of the alphabet
+        } else {
+            return input;
+        }
+    }
+
     private void checkIntegrity()
     {
         if(!integrityOK)
