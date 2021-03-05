@@ -1,6 +1,4 @@
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.EmptyStackException;
-import org.junit.Test;
 
 /**
     A class of stacks whose entries are stored in a chain of nodes. */
@@ -120,13 +118,6 @@ public final class LinkedStack<T> implements StackInterface<T>
         return postfix.toString();
     }
 
-    @Test
-    public void testConvertToPostfix()
-    {
-        LinkedStack<Character> newString = new LinkedStack<>();
-        assertEquals("ab*ca-/de*+", newString.convertToPostfix("a*b/(c-a)+d*e"));
-    }
-
 	private class Node
 	{
         private T    data; // Entry in stack
@@ -148,19 +139,22 @@ public final class LinkedStack<T> implements StackInterface<T>
             return data;
         } // end getData
         
-        private void setData(T newData)
-        {
-            data = newData;
-        } // end setData
-        
         private Node getNextNode()
         {
             return next;
         } // end getNextNode
         
+        /*
+        private void setData(T newData)
+        {
+            data = newData;
+        } // end setData
+        
+        
         private void setNextNode(Node nextNode)
         {
             next = nextNode;
-        } // end setNextNode
-	} // end Node
+        } // end setNextNode */
+
+    } // end Node
 } // end LinkedStack
