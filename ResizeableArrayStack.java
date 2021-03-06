@@ -90,27 +90,44 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
 
     } // end clear
 
-    public char evaluatePostfix(String postfix) {
-        StackInterface<Character> valueStack = new ResizeableArrayStack<>();
+    public int evaluatePostfix(String postfix) {
+        StackInterface<Integer> valueStack = new ResizeableArrayStack<>();
         int index = 0;
 
         while(index < postfix.length()) {
             char nextCharacter = checkIfDigit(postfix.charAt(index));
-
+            char numIndex = postfix.charAt(index);
             switch(nextCharacter)
             {
                 case '~':
-                    valueStack.push(postfix.charAt(index));
+                    System.out.println(numIndex);
+                    valueStack.push(numIndex-'0');
                     break;
-                case '+' : case '-' : case '*' : case '/' : case '^' :
-                    int operandTwo = valueStack.pop();
+                case '+' : 
                     int operandOne = valueStack.pop();
-                    
-                    int intResult = operandTwo + postfix.charAt(index) + operandOne;
-                    char charResult = (char)intResult;
-                    System.out.println(charResult);
-
-                    valueStack.push(charResult);
+                    int operandTwo = valueStack.pop();
+                    valueStack.push(operandTwo+operandOne);
+                    break;
+                case '-' : 
+                    int operandA = valueStack.pop();
+                    int operandB = valueStack.pop();
+                    valueStack.push(operandB-operandA);
+                    break;
+                case '*' : 
+                    int operandX = valueStack.pop();
+                    int operandY = valueStack.pop();
+                    valueStack.push(operandY*operandX);
+                    break;
+                case '/' : 
+                    int operandAlpha = valueStack.pop();
+                    int operandOmega = valueStack.pop();
+                    valueStack.push(operandOmega/operandAlpha);
+                    break;
+                
+                case '^' :
+                    int operandFirst = valueStack.pop();
+                    int operandSecond = valueStack.pop();
+                    valueStack.push(operandSecond^operandFirst);
                     break;
                 default: break;
             }
