@@ -21,7 +21,13 @@ public class ArrayStackTest {
         System.out.println("Algorithm evaluates postfix equation");
         System.out.println("Expected Result: 33");
         System.out.print("Actual Result: ");
-        System.out.println(postfixEval("23*42-/56*+"));            
+        System.out.println(postfixEval("23*42-/56*+"));
+        
+        assertEquals(10, postfixEval("55+"));
+        assertEquals(2, postfixEval("42-"));
+        assertEquals(30, postfixEval("65*"));
+        assertEquals(3, postfixEval("62/"));
+        assertEquals(4, postfixEval("22^"));
     }
 
 }

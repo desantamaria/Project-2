@@ -100,7 +100,7 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
             switch(nextCharacter)
             {
                 case '~':
-                    System.out.println(numIndex);
+                    //System.out.println(numIndex);
                     valueStack.push(numIndex-'0');
                     break;
                 case '+' : 
@@ -127,7 +127,8 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
                 case '^' :
                     int operandFirst = valueStack.pop();
                     int operandSecond = valueStack.pop();
-                    valueStack.push(operandSecond^operandFirst);
+
+                    valueStack.push((int) Math.pow(operandSecond, operandFirst));
                     break;
                 default: break;
             }
