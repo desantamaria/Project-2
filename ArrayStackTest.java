@@ -7,19 +7,11 @@ public class ArrayStackTest {
         System.out.println("Hello");
     }
 
-<<<<<<< HEAD
-    public static int higher(int x, int y){
-        if (x > y)   
-            return x;
-        else 
-            return y;
-=======
     public static char postfixEval(String postfixInput) {
         ResizeableArrayStack<Character> valueStack = new ResizeableArrayStack<>();
         char Result = valueStack.evaluatePostfix(postfixInput);
         
         return Result;
->>>>>>> 08d44223fd6cb77a5379b8729e9285ece6b5bac9
     }
     
     @Test
