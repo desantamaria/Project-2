@@ -108,15 +108,17 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
                     
                     int intResult = operandTwo + postfix.charAt(index) + operandOne;
                     char charResult = (char)intResult;
+                    System.out.println(charResult);
 
                     valueStack.push(charResult);
                     break;
                 default: break;
             }
+            index++; 
         }
         return valueStack.peek();
     }
-
+    
     private char checkIfDigit(char input) //checks if character is a member of the alphabet
     {
         if(Character.isDigit(input)) {
