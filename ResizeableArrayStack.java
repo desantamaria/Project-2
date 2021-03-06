@@ -100,8 +100,17 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
             switch(nextCharacter)
             {
                 case '~':
-                    //System.out.println(numIndex);
-                    valueStack.push(numIndex-'0');
+                    int num = 0; 
+                  
+                    while(Character.isDigit(numIndex)) 
+                    { 
+                        num = num*10 + (int)(numIndex-'0'); 
+                        index++; 
+                        numIndex = postfix.charAt(index); 
+                    } 
+                    index--; 
+                
+                    valueStack.push(num);
                     break;
                 case '+' : 
                     int operandOne = valueStack.pop();
