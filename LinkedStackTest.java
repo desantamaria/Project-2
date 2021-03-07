@@ -8,9 +8,9 @@ public class LinkedStackTest {
 
     }
     
-    public static String infixToPostfix(String Infix) {
+    @Test
+    public void infixToPostfix() {
         LinkedStack<Character> expression = new LinkedStack<>();
-<<<<<<< HEAD
 
         assertEquals("ab*ca-/de*+", expression.convertToPostfix("a*b/(c-a)+d*e"));
         System.out.println("Function converts equation to postfix");
@@ -76,15 +76,9 @@ public class LinkedStackTest {
         System.out.print("Actual Result: ");
         System.out.println(expression.checkIfAlpha('*'));
         System.out.println();
-=======
-        String Postfix = expression.convertToPostfix(Infix);
-        
-        return Postfix;
->>>>>>> 08d44223fd6cb77a5379b8729e9285ece6b5bac9
     }
 
     @Test
-<<<<<<< HEAD
     public void testCheckPrecedence()
     {
         LinkedStack<Character> expression = new LinkedStack<>();
@@ -118,14 +112,5 @@ public class LinkedStackTest {
         System.out.println(expression.checkPrecedence('*'));
         System.out.println();
 
-=======
-    public void TestinfixToPostfix() {
-        assertEquals("ab*ca-/de*+", infixToPostfix("a*b/(c-a)+d*e"));
-        
-        System.out.println("Function converts equation to postfix");
-        System.out.println("Expected Result: ab*ca-/de*+");
-        System.out.print("Actual Result: ");
-        System.out.println(infixToPostfix("a*b/(c-a)+d*e"));            
->>>>>>> 08d44223fd6cb77a5379b8729e9285ece6b5bac9
     }
 }
