@@ -4,7 +4,10 @@ import org.junit.Test;
 
 public class ArrayStackTest {
     public static void main(String[] args) {
-        System.out.println("Hello");
+        System.out.println("Algorithm evaluates postfix equation");
+        System.out.println("Expected Result: 33");
+        System.out.print("Actual Result: ");
+        System.out.println(postfixEval("2 3* 4 2-/ 5 6*+"));
     }
 
     public static int postfixEval(String postfixInput) {
