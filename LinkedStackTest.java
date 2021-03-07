@@ -4,8 +4,10 @@ import org.junit.Test;
 
 public class LinkedStackTest {
     public static void main(String[] args) {
-        System.out.println("Hello");
-
+        System.out.println("Function converts equation to postfix");
+        System.out.println("Expected Result: ab*ca-/de*+");
+        System.out.print("Actual Result: ");
+        System.out.println(infixToPostfix("a*b/(c-a)+d*e"));
     }
     
     public static String infixToPostfix(String Infix) {
