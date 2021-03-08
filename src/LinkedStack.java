@@ -1,6 +1,7 @@
+package src;
 /**
 @author Daniel Santamaria
-@author s
+@author Renwell Queyquep
 CS2400
 3/7/21 
  */
