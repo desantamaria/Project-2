@@ -1,3 +1,4 @@
+package src;
 import java.util.Arrays;
 import java.util.EmptyStackException;
 /**
@@ -90,33 +91,62 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
 
     } // end clear
 
-    public char evaluatePostfix(String postfix) {
-        StackInterface<Character> valueStack = new ResizeableArrayStack<>();
+    public int evaluatePostfix(String postfix) {
+        StackInterface<Integer> valueStack = new ResizeableArrayStack<>();
         int index = 0;
 
         while(index < postfix.length()) {
             char nextCharacter = checkIfDigit(postfix.charAt(index));
-
+            char numIndex = postfix.charAt(index);
             switch(nextCharacter)
             {
                 case '~':
-                    valueStack.push(postfix.charAt(index));
+                    int num = 0; 
+                  
+                    while(Character.isDigit(numIndex)) 
+                    { 
+                        num = num*10 + (int)(numIndex-'0'); 
+                        index++; 
+                        numIndex = postfix.charAt(index); 
+                    } 
+                    index--; 
+                
+                    valueStack.push(num);
                     break;
-                case '+' : case '-' : case '*' : case '/' : case '^' :
-                    int operandTwo = valueStack.pop();
+                case '+' : 
                     int operandOne = valueStack.pop();
-                    
-                    int intResult = operandTwo + postfix.charAt(index) + operandOne;
-                    char charResult = (char)intResult;
+                    int operandTwo = valueStack.pop();
+                    valueStack.push(operandTwo+operandOne);
+                    break;
+                case '-' : 
+                    int operandA = valueStack.pop();
+                    int operandB = valueStack.pop();
+                    valueStack.push(operandB-operandA);
+                    break;
+                case '*' : 
+                    int operandX = valueStack.pop();
+                    int operandY = valueStack.pop();
+                    valueStack.push(operandY*operandX);
+                    break;
+                case '/' : 
+                    int operandAlpha = valueStack.pop();
+                    int operandOmega = valueStack.pop();
+                    valueStack.push(operandOmega/operandAlpha);
+                    break;
+                
+                case '^' :
+                    int operandFirst = valueStack.pop();
+                    int operandSecond = valueStack.pop();
 
-                    valueStack.push(charResult);
+                    valueStack.push((int) Math.pow(operandSecond, operandFirst));
                     break;
                 default: break;
             }
+            index++; 
         }
         return valueStack.peek();
     }
-
+    
     private char checkIfDigit(char input) //checks if character is a member of the alphabet
     {
         if(Character.isDigit(input)) {

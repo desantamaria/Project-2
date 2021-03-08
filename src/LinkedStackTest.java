@@ -1,5 +1,5 @@
+package src;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
 import org.junit.Test;
 
 public class LinkedStackTest {
@@ -14,38 +14,13 @@ public class LinkedStackTest {
 
         assertEquals("ab*ca-/de*+", expression.convertToPostfix("a*b/(c-a)+d*e"));
         System.out.println("Function converts equation to postfix");
-        System.out.println();
-
-        System.out.println("Input: a*b/(c-a)+d*e");
         System.out.println("Expected Result: ab*ca-/de*+");
         System.out.print("Actual Result: ");
-        System.out.println(expression.convertToPostfix("a*b/(c-a)+d*e")); 
-        System.out.println();
-
-        assertEquals("ab*ca-/de*+", expression.convertToPostfix("a * b / (c - a) + d * e"));
-        System.out.println("Input: a * b / (c - a) + d * e");
-        System.out.println("Expected Result: ab*ca-/de*+");
-        System.out.print("Actual Result: ");
-        System.out.println(expression.convertToPostfix("a * b / (c - a) + d * e")); 
-        System.out.println();
-
-        assertEquals("ab*ca-/de*+", expression.convertToPostfix("a*b / (c - a)                     + d*e"));
-        System.out.println("Input: a*b / (c - a)                     + d*e");
-        System.out.println("Expected Result: ab*ca-/de*+");
-        System.out.print("Actual Result: ");
-        System.out.println(expression.convertToPostfix("a*b / (c - a)                     + d*e")); 
-        System.out.println();
-
-        assertEquals("ab*c*ad/-", expression.convertToPostfix("a*b*c - (a / d)"));
-        System.out.println("Input: a*b*c - (a / d)");
-        System.out.println("Expected Result: ab*c*ad/-");
-        System.out.print("Actual Result: ");
-        System.out.println(expression.convertToPostfix("a*b*c - (a / d)")); 
+        System.out.println(expression.convertToPostfix("a*b/(c-a)+d*e"));
     }
-
+    
     @Test
-    public void testCheckIfAlpha()
-    {
+    public void checkIfAlpha() {
         LinkedStack<Character> expression = new LinkedStack<>();
         System.out.println("Function converts equation to postfix");
 

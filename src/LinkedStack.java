@@ -1,3 +1,4 @@
+package src;
 import java.util.EmptyStackException;
 
 /**
@@ -154,7 +155,7 @@ public final class LinkedStack<T> implements StackInterface<T>
             return next;
         } // end getNextNode
         
-        /*
+        
         private void setData(T newData)
         {
             data = newData;
@@ -164,7 +165,7 @@ public final class LinkedStack<T> implements StackInterface<T>
         private void setNextNode(Node nextNode)
         {
             next = nextNode;
-        } // end setNextNode */
+        } // end setNextNode
 
     } // end Node
 } // end LinkedStack
