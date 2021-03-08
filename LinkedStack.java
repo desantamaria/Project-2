@@ -1,3 +1,9 @@
+/**
+@author Daniel Santamaria
+@author s
+CS2400
+3/7/21 
+ */
 import java.util.EmptyStackException;
 
 /**
@@ -45,25 +51,20 @@ public final class LinkedStack<T> implements StackInterface<T>
         topNode = null;
     } // end clear
 
-    /**
-     * Checks if the char input into the function is part of the alphabet, if it is then the function will output ~ to represent a member of the alphabet, if not then it returns the char.
+    /** Checks if the char input into the function is part of the alphabet, if it is then the function will output ~ to represent a member of the alphabet, if not then it returns the char.
      * @param input represents an individual character in a string of equations
-     * @return a char that represents if it is alphabetical which is represented by the ~ sign, or returns the char if the input is not part of the alphabet.
-     */
+     * @return a char that represents if it is alphabetical which is represented by the ~ sign, or returns the char if the input is not part of the alphabet. */
     public char checkIfAlpha(char input) //checks if character is a member of the alphabet
     {
-        if(Character.isLetter(input)) {
+        if(Character.isLetter(input)) 
             return '~'; //signifier for a letter of the alphabet
-        } else {
+        else 
             return input;
-        }
-    }
+    } // end checkIfAlpha
 
-    /**
-     * Checks the precedence of an operator and assigns it an int value
+    /** Checks the precedence of an operator and assigns it an int value
      * @param symbol operator from which the precedence will be obtained
-     * @return int that represents the precedence of the symbol
-     */
+     * @return int that represents the precedence of the symbol */
     public int checkPrecedence(char symbol)
     {
         switch(symbol)
@@ -73,15 +74,13 @@ public final class LinkedStack<T> implements StackInterface<T>
             case '*': case '/':
                 return 2;
             default: break;
-        }
+        } // end switch
         return 0;
-    }
+    } // end checkPrecedence
 
-    /**
-     * Function that converts infix equation in the form of the string to a postfix equation.
+    /** Function that converts infix equation in the form of the string to a postfix equation.
      * @param infix equation you input, in infix form
-     * @return string that shows the postfix form of infix equation inputted.
-     */
+     * @return string that shows the postfix form of infix equation inputted. */
     public String convertToPostfix(String infix)
     {
         StackInterface<Character> operatorStack = new LinkedStack<>();
@@ -103,7 +102,7 @@ public final class LinkedStack<T> implements StackInterface<T>
                     while(!operatorStack.isEmpty() && checkPrecedence(currentChar) <= checkPrecedence(operatorStack.peek()))
                     {
                         postfix.append(operatorStack.pop());
-                    }
+                    } // end while
                     operatorStack.push(currentChar);
                     break;
                 case '(':
@@ -115,18 +114,18 @@ public final class LinkedStack<T> implements StackInterface<T>
                     {
                         postfix.append(topOperator);
                         topOperator = operatorStack.pop();
-                    }
+                    } // end while
                     break;
                 default: break;
-            }
+            } // end switch
             index++;
-        }
+        } // end while
         while(!operatorStack.isEmpty())
         {
             postfix.append(operatorStack.pop());
-        }
+        } // end while
         return postfix.toString();
-    }
+    } // end convertToPostfix
 
 	private class Node
 	{

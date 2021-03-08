@@ -1,3 +1,9 @@
+/**
+@author Daniel Santamaria
+@author s
+CS2400
+3/7/21 
+ */
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.Test;
@@ -8,14 +14,14 @@ public class LinkedStackTest {
         System.out.println("Expected Result: ab*ca-/de*+");
         System.out.print("Actual Result: ");
         System.out.println(infixToPostfix("a*b/(c-a)+d*e"));
-    }
+    } // end main
     
     public static String infixToPostfix(String Infix) {
         LinkedStack<Character> expression = new LinkedStack<>();
         String Postfix = expression.convertToPostfix(Infix);
         
         return Postfix;
-    }
+    } // end infixToPostfix
 
     @Test
     public void TestinfixToPostfix() {
@@ -25,5 +31,5 @@ public class LinkedStackTest {
         System.out.println("Expected Result: ab*ca-/de*+");
         System.out.print("Actual Result: ");
         System.out.println(infixToPostfix("a*b/(c-a)+d*e"));            
-    }
-}
+    } // end TestinfixToPostfix
+} // end LinkStackTest

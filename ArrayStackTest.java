@@ -1,3 +1,9 @@
+/**
+@author Daniel Santamaria
+@author s
+CS2400
+3/7/21 
+ */
 import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
@@ -8,14 +14,14 @@ public class ArrayStackTest {
         System.out.println("Expected Result: 33");
         System.out.print("Actual Result: ");
         System.out.println(postfixEval("2 3* 4 2-/ 5 6*+"));
-    }
+    } // end main
 
     public static int postfixEval(String postfixInput) {
         ResizeableArrayStack<Character> valueStack = new ResizeableArrayStack<>();
         int Result = valueStack.evaluatePostfix(postfixInput);
         
         return Result;
-    }
+    } // end postFixEval
     
     @Test
     public void TestpostfixEval() {
@@ -38,6 +44,6 @@ public class ArrayStackTest {
         assertEquals(3030, postfixEval("20 30* 40 20-/ 50 60*+"));
 
         assertEquals(53, postfixEval("78 30 5 28 8 + * - 6 / +"));
-    }
+    } // end TestpostfixEval
 
-}
+} // end ArrayStackTest
