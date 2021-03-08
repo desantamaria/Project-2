@@ -1,3 +1,9 @@
+/**
+@author Daniel Santamaria
+@author s
+CS2400
+3/7/21 
+ */
 import java.util.Arrays;
 import java.util.EmptyStackException;
 /**
@@ -65,15 +71,6 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
         return topIndex < 0;
     } // end isEmpty
 
-    private void ensureCapacity()
-    {
-        if (topIndex >= stack.length - 1) // If array is full, double its size
-        {
-            int newLength = 2 * stack.length;
-            checkCapacity(newLength);
-            stack = Arrays.copyOf(stack, newLength);
-        } // end if
-    } // end ensureCapacity
     
     public void clear()
     {
@@ -89,7 +86,11 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
         //Assertion: topIndex is -1
 
     } // end clear
-
+    
+    /**
+     * Function that evaluates a postfix equation in the form of the string.
+     * @param postfix equation you input, in postfix form. (With spaces in between to seperate multi-digit numbers)
+     * @return an int that was popped from the stack after the operations are finished. */
     public int evaluatePostfix(String postfix) {
         StackInterface<Integer> valueStack = new ResizeableArrayStack<>();
         int index = 0;
@@ -107,7 +108,7 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
                         num = num*10 + (int)(numIndex-'0'); 
                         index++; 
                         numIndex = postfix.charAt(index); 
-                    } 
+                    } // end while
                     index--; 
                 
                     valueStack.push(num);
@@ -140,27 +141,47 @@ public final class ResizeableArrayStack<T> implements StackInterface<T>
                     valueStack.push((int) Math.pow(operandSecond, operandFirst));
                     break;
                 default: break;
-            }
+            } // end switch
+            
             index++; 
-        }
+        } // end while
         return valueStack.peek();
-    }
+    } // end evaluatePostfix
     
+    /**
+     * Method that doubles the stack length if the stack is full. */
+    private void ensureCapacity()
+    {
+        if (topIndex >= stack.length - 1) // If array is full, double its size
+        {
+            int newLength = 2 * stack.length;
+            checkCapacity(newLength);
+            stack = Arrays.copyOf(stack, newLength);
+        } // end if
+    } // end ensureCapacity
+    
+    /**
+     * Method that checks whether the input is a digit
+     * @param input a character that is going to be checked
+     * @return the character '~' if the input is a digit or "input" if not a digit. */
     private char checkIfDigit(char input) //checks if character is a member of the alphabet
     {
-        if(Character.isDigit(input)) {
+        if(Character.isDigit(input)) 
             return '~'; //signifier for a letter of the alphabet
-        } else {
+        else 
             return input;
-        }
-    }
+    } // end checkIfDigit
 
+    /** Checks if the Stack is not corrupt 
+     * @throws  IllegalStateException throws exception if the integrity is not there*/
     private void checkIntegrity()
     {
         if(!integrityOK)
-            throw new SecurityException("Array object is corrupt.");
-    }
-
+            throw new SecurityException("Stack object is corrupt.");
+    } // end checkIntegrity
+    
+    /** Checks if the desired capacity exceeds the maximum capacity. 
+     * @throws  IllegalStateException throws exception if the desired capacity is higher than the max capacity. */
     private void checkCapacity(int capacity)
     {
         if(capacity > MAX_CAPACITY)
