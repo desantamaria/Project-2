@@ -1,12 +1,14 @@
 package src;
+import java.util.Arrays;
+import java.util.EmptyStackException;
+
 /**
 @author Daniel Santamaria
 @author Renwell Queyquep
 CS2400
 3/7/21 
  */
-import java.util.Arrays;
-import java.util.EmptyStackException;
+
 /**
  * A class of stacks whose entries are stored in an array.
  */

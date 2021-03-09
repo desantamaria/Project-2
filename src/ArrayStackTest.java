@@ -1,11 +1,11 @@
 package src;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 /**
 @author Daniel Santamaria
 @author Renwell Queyquep
 CS2400
 3/7/21 
  */
-import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
@@ -27,7 +27,6 @@ public class ArrayStackTest {
     @Test
     public void TestpostfixEval() {
         assertEquals(33, postfixEval("2 3* 4 2-/ 5 6*+"));
-        
         System.out.println("Algorithm evaluates postfix equation");
         System.out.println("Expected Result: 33");
         System.out.print("Actual Result: ");

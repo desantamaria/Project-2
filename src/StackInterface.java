@@ -1,10 +1,12 @@
 package src;
+
 /**
 @author Daniel Santamaria
 @author Renwell Queyquep
 CS2400
 3/7/21 
  */
+
 public interface StackInterface<T>
 {
    /** Adds a new entry to the top of this stack.
